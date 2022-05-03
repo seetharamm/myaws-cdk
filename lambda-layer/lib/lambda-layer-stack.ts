@@ -20,7 +20,8 @@ export class LambdaLayerStack extends Stack {
     const fun = new lambda.Function(this,'lambdaStack',{
      code: lambda.Code.fromAsset(path.join(__dirname,'/../mylambdacode')),
      handler: 'index.main',
-     runtime: lambda.Runtime.NODEJS_14_X
+     runtime: lambda.Runtime.NODEJS_14_X,
+     layers: [layerfun]
     })
 
     
