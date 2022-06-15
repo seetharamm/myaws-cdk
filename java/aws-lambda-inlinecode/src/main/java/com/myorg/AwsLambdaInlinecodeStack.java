@@ -21,10 +21,10 @@ public class AwsLambdaInlinecodeStack extends Stack {
         SingletonFunction lambdaFunction =
         SingletonFunction.Builder.create(this, "cdk-lambda-cron")
             .description("Lambda which prints \"I'm running\"")
-            .code(Code.fromInline("def main(event, context):\n" + "    print(\"I'm running!\")\n"))
+            .code(Code.fromInline("exports.handler = function (event, context, callback){ const response = { statusCode : 200,body : JSON.stringify('Hello from lambda')}; callback(null, response);};"))
             .handler("index.main")
             .timeout(Duration.seconds(300))
-            .runtime(Runtime.PYTHON_3_9)
+            .runtime(Runtime.NODEJS_16_X)
             .uuid(UUID.randomUUID().toString())
             .build();
     }
